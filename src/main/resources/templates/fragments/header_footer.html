@@ -1,0 +1,94 @@
+<div th:fragment="header">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/index">Система "Гостиница"</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/booking">Забронировать</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            Меню
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/apartments">Апартаменты</a></li>
+                            <li><a class="dropdown-item" href="/clients">Клиенты</a></li>
+                            <li><a class="dropdown-item" href="/cards">Карточки</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">О нас</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div th:fragment="footer">
+
+    <footer class="bg-dark text-center text-white">
+        <div class="container p-4 pb-0">
+            <section class="mb-4">
+                <a class="btn btn-outline-light  btn-floating m-1" href="#!">
+                    <img height="30" th:src="@{img/tik.png}"></a>
+
+                <a class="btn btn-outline-light  btn-floating m-1" href="#!">
+                    <img height="30" th:src="@{img/twi.png}"></a>
+
+                <a class="btn btn-outline-light  btn-floating m-1" href="#!">
+                    <img height="30" th:src="@{img/inst.png}"></a>
+
+                <a class="btn btn-outline-light  btn-floating m-1" href="#!">
+                    <img height="30" th:src="@{img/utb.png}"></a>
+
+                <a class="btn btn-outline-light btn-floating m-1" href="#!">
+                    <img height="30" th:src="@{img/vibr.png}"></a>
+            </section>
+        </div>
+
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2022 Copyright:
+            <a class="text-white" href="/index">Система "Гостиница"</a>
+        </div>
+    </footer>
+</div>
+
+<!--?\footer fromFolder-->
+
+<div th:fragment="footerFolder">
+
+    <footer class="bg-dark text-center text-white">
+        <div class="container p-4 pb-0">
+            <section class="mb-4">
+                <a class="btn btn-outline-light  btn-floating m-1" href="#!">
+                    <img height="30" th:src="@{../img/tik.png}"></a>
+
+                <a class="btn btn-outline-light  btn-floating m-1" href="#!">
+                    <img height="30" th:src="@{../img/twi.png}"></a>
+
+                <a class="btn btn-outline-light  btn-floating m-1" href="#!">
+                    <img height="30" th:src="@{../img/inst.png}"></a>
+
+                <a class="btn btn-outline-light  btn-floating m-1" href="#!">
+                    <img height="30" th:src="@{../img/utb.png}"></a>
+
+                <a class="btn btn-outline-light btn-floating m-1" href="#!">
+                    <img height="30" th:src="@{../img/vibr.png}"></a>
+            </section>
+        </div>
+
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2022 Copyright:
+            <a class="text-white" href="/index">Система "Гостиница"</a>
+        </div>
+    </footer>
+</div>

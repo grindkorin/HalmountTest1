@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <title>Картотека</title>
+</head>
+<body>
+<div th:replace="fragments/header_footer :: header"></div>
+<h1 style="text-align: center" class="display-5">Карточки регистрации</h1>
+<table class="table" style="margin: 15px 10%; width: 80%;">
+    <thead class="table-dark">
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Апартаменты</th>
+        <th scope="col">Id Клиента</th>
+        <th scope="col">Прибытие</th>
+        <th scope="col">Отбытие</th>
+        <th scope="col">Оплата</th>
+        <th scope="col">Предоплата</th>
+        <th scope="col">Дата оплаты</th>
+        <th scope="col">Дата предоплаты</th>
+        <th scope="col">Ковид</th>
+        <th>
+            <button class="btn btn-outline-light nBtn">Добавить</button>
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="card: ${cards}">
+        <td th:text="${card.id}"></td>
+        <td th:text="${card.apartment.number}"></td>
+        <td th:text="${card.client}"></td>
+        <td th:text="${card.arrival}"></td>
+        <td th:text="${card.leaving}"></td>
+        <td th:text="${card.paid}"></td>
+        <td th:text="${card.prepayment}"></td>
+        <td th:text="${card.paidDate}"></td>
+        <td th:text="${card.prepaymentDate}"></td>
+        <td th:text="${card.covidTest}"> <input type="hidden" th:text="${card.bookedDate}"></td>
+        <td><a th:href="@{findCardById/(id=${card.id})}" class="btn btn-dark eBtn">Изменить</a></td>
+        <td><a th:href="@{deleteCard/(id=${card.id})}" class="btn btn-dark dBtn" data-bs-toggle="modal"
+               data-bs-target="#deleteModal">Удалить</a></td>
+    </tr>
+    </tbody>
+</table>
+
+
+<!--edit/add modal-->
+<div class="myForm">
+    <form th:action="@{/saveCard}" method="post">
+        <div class="modal fade" id="exampleModal" role="dialog" tabindex="-1" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Карты</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="id" class="col-form-label">ID:</label>
+                            <input type="text" class="form-control" id="id" readonly name="id" value=""/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="apartment" class="col-form-label">Номер комнаты:</label>
+                            <input type="text" class="form-control" id="apartment" name="apartment" value=""/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="clientId" class="col-form-label">Id клиента:</label>
+                            <input type="text" class="form-control" id="clientId" name="clientId" value=""/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="arrival" class="col-form-label">Дата прибытия:</label>
+                            <input type="date" class="form-control" id="arrival" name="arrival" value=""/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="leaving" class="col-form-label">Дата отбытия:</label>
+                            <input type="date" class="form-control" id="leaving" name="leaving" value=""/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="paid" class="col-form-label">Оплата:</label>
+                            <select class="form-control" id="paid" name="paid" required>
+                                <option th:value="true">Да</option>
+                                <option th:value="false">Нет</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="prepayment" class="col-form-label">Предоплата:</label>
+                            <select class="form-control" id="prepayment" name="prepayment" required>
+                                <option th:value="true">Да</option>
+                                <option th:value="false">Нет</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="paidDate" class="col-form-label">Дата оплаты:</label>
+                            <input type="text" class="form-control" id="paidDate" name="paidDate" value=""/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="prepaymentDate" class="col-form-label">Дата предоплаты:</label>
+                            <input type="text" class="form-control" id="prepaymentDate" name="prepaymentDate" value=""/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="covidTest" class="col-form-label">ПЦР-тест:</label>
+                            <select class="form-control" id="covidTest" name="covidTest" required>
+                                <option th:value="true">Положительный</option>
+                                <option th:value="false">Отрицательный</option>
+                            </select>
+                            <input type="hidden" class="form-control" id="bookedDate" name="bookedDate" value=""/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" rel="modal:close" data-bs-dismiss="modal">
+                            Закрыть
+                        </button>
+                        <input type="submit" class="btn btn-primary" value="Сохранить"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<!--delete modal-->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Подтверждение удаления</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Вы действительно хотите удалить карту?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="" type="button" class="btn btn-danger" id="del">Удалить</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="fragments/header_footer :: footer"></div>
+<script type="text/javascript" src="webjars/jquery/3.6.0/jquery.js"></script>
+<script type="text/javascript" src="webjars/bootstrap/5.1.3/js/bootstrap.js"></script>
+<script type="text/javascript" th:src="@{js/cards.js}" src="../static/js/cards.js"></script>
+</body>
+</html>

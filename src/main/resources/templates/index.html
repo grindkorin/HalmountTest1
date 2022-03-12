@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <title>Информационная система "Гостиница" </title>
+</head>
+<body>
+<div th:replace="fragments/header_footer :: header"></div>
+<div class="body">
+    <h1>Добро пожаловать на сервис "Гостиница"</h1>
+    <h6>Не хотели бы вы <a href="/booking">забронировать</a> комнату?</h6>
+</div>
+<div class="jumbotron">
+    <h1 class="display-5">Доступные сервисы сайта</h1>
+    <div class="apartment">
+        <p class="lead">Менеджер комнат гостиницы</p>
+        <hr class="my-4">
+        <p>Возможно удаление, добавление, а также редактирование списка аппартаментов</p>
+        <p class="lead">
+            <a class="btn btn-dark btn-lg" href="/apartments" role="button">Перейти</a>
+        </p>
+    </div>
+    <div class="client">
+        <p class="lead">Менеджер по работе с клиентами</p>
+        <hr class="my-4">
+        <p>Регистрация, удаление, просмотр пользователей "Гостиницы"</p>
+        <p class="lead">
+            <a class="btn btn-dark btn-lg" href="/clients" role="button">Перейти</a>
+        </p>
+    </div>
+    <div class="cards">
+        <p class="lead">Управляющий карточками регистрации</p>
+        <hr class="my-4">
+        <p>Создание, редактура, привязка карточек регистрации пользователей</p>
+        <p class="lead">
+            <a class="btn btn-dark btn-lg" href="/cards" role="button">Перейти</a>
+        </p>
+    </div>
+</div>
+
+<div th:replace="fragments/header_footer :: footer"></div>
+<script type="text/javascript" src="webjars/jquery/3.6.0/jquery.js"></script>
+<script type="text/javascript" src="webjars/bootstrap/5.1.3/js/bootstrap.js"></script>
+</body>
+</html>

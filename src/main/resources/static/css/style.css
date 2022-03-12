@@ -1,0 +1,35 @@
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+    align-content: center;
+}
+
+ footer{
+    width: 100%;
+    margin-top: 25px ;
+    position: fixed;
+    bottom: 0;
+}
+
+.body{
+    margin: 20px;
+    text-align: center;
+}
+.jumbotron{
+    margin: 20px;
+}
+.apartment{
+    margin-left: 10%;
+}
+.client{
+    margin-left: 25%;
+}
+.cards{
+    margin-left: 40%;
+    margin-bottom: 25px;
+}
+
+.apartmentsByStatus{
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+}
